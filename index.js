@@ -79,6 +79,7 @@ bot.on("message", async message => {
           modlog.send(swearLogEmbed);
       }
 
+      RandomXP(message);
 
 
     }
@@ -107,6 +108,43 @@ bot.on("message", async message => {
 
 
 })
+
+
+function RandomXP(message) {
+
+  var randomNumber = Math.floor(Math.random() * 15) + 1;
+
+  var IdUser = message.author.id;
+
+  if(!levelFile[IdUser]) {
+      levelFile[IdUser] = {
+          xp: 0,
+          level: 0
+      }
+  }
+  levelFile[IdUser].xp += randomNumber;
+
+  var levelUser = levelFile[IdUser].level;
+  var xpUser = levelFile[IdUser].xp;
+
+  var nextLevelXp = levelUser * 300;
+
+  if(nextLevelXp == 0) nextLevelXp = 100;
+
+  if(xpUser >= nextLevelXp) { 
+
+      levelFile[IdUser].level += 1;
+
+      fs.writeFile("./data/levels.json", JSON.stringify(levelFile), err => {
+          if (err) console.log(err);
+
+      });
+
+      message.reply("Je hebt net level " + levelFile[IdUser].level + " gehaald. Good job!");
+  }
+}
+
+
 
 
 bot.on("guildMemberAdd", member => {
