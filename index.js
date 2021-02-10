@@ -79,7 +79,7 @@ bot.on("message", async message => {
           modlog.send(swearLogEmbed);
       }
 
-      RandomXP(message);
+      // RandomXP(message);
 
 
     }
