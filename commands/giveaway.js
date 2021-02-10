@@ -22,7 +22,67 @@ module.exports.run = async (bot, message, args) => {
     var dateEnd = new Date(date + (time * 1000));
 
     var giveawayEmbed = new discord.MessageEmbed()
-        .setTimestamp
+        .setTitle("🎉 **Giveaway** 🎉")
+        .setFooter(`Eindigt: ${dataEnd}`)
+        .setDescription(item)
+
+
+    var embedSend = await message.channel.send(giveawayEmbed);
+    embedSend.react("🎉");
+
+
+    setTimeout(function(){
+
+        var random = 0;
+        var winners = [];
+        var inList = false;
+
+        var peopleReacted = embedSend.reactions.cache.get("🎉").users.cache.array();
+
+        for (let i = 0; i < peopleReacted.length; i++) {
+
+            if (peopleReacted[i].id == client.user.id) {
+                peopleReacted.splice(i,1);
+                continue;
+            }
+        }
+
+        if (peopleReacted == 0){
+            return message.channel.send("Geen winnaars, ik win!");
+        }
+
+        if (peopleReacted.length < winnerCount) {
+            return message.channel.send("Te weinig mensen deden mee, ik win!");
+        }
+
+        for (let y = 0; y < winnerCount; y++) {
+
+            inList = false;
+
+            random = Math.floor(Math.random() * peopleReacted.length);
+
+            for (let o = 0; o < winners.length; o++) {
+
+                if (winners[o] == peopleReacted[random]){
+                    inList = true;
+                    y--;
+                    break;
+                }
+            }
+
+            if (!inList) {
+                winners.push(peopleReacted[random]);
+            }
+        }
+
+        for (let y = 0; y < winners.length; y++) {
+
+            message.channel.send("Gefeliciteerd " + winners[i] + `. Je hebt *${item}* gewonnen!`);
+        }
+
+
+    }, time*1000)
+
 
 }
 
@@ -30,7 +90,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
 
     name: "giveaway",
-    description: "Lock een kanaal",
+    description: "Host een giveaway",
     category: "moderatie"
 
 }
