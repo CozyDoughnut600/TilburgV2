@@ -8,13 +8,15 @@ module.exports.run = async (bot, message, args) => {
 
     if (!message.member.hasPermission("MANAGE_SERVER")) return message.reply("Jij hebt geen permissie hiervoor");
 
+    winnerCount = args[0];
+    time = args[1];
+    item = args.splice(2, args.length).join(" ");   
+
     if (!winnerCount) return message.reply("Geef een aantal winnaars op");
     if (!time) return message.reply("Geef een tijd op");
     if (!item) return message.reply("Wat kan je winnen?");
 
-    winnerCount = args[0];
-    time = args[1];
-    item = args.splice(2, args.length).join(" ");
+
 
     message.delete();
 
