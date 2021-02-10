@@ -37,6 +37,10 @@ message.guild.channels.create(userName.toLowerCase() + "-" + userDiscriminator, 
                   SEND_MESSAGES: false,
                   VIEW_CHANNEL: false
               }); 
+              settedParent.updateOverwrite(message.guild.roles.cache.find(x => x.name === '@Support Team'),{
+                SEND_MESSAGES: true,
+                VIEW_CHANNEL: true
+            }); 
               settedParent.updateOverwrite(message.author.id,{
                   CREATE_INSTANT_INVITE:false,
                   READ_MESSAGES: false,

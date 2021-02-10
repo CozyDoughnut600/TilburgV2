@@ -20,6 +20,7 @@ module.exports.run = async (bot, message, args) => {
     var response = "**commands**\n";
     var moderatie = "\n**moderatie**\n";
     var tickets = "\n**Tickets**\n";
+    var fun = "\n**Fun**\n";
 
     for (let i = 0; i < commandList.length; i++) {
         const command = commandList[i];
@@ -30,12 +31,16 @@ module.exports.run = async (bot, message, args) => {
         }else if(command["category"] == "tickets") {
 
             tickets += `${prefix}${command["name"]} - ${command["description"]}\n\n`;
+        }else if(command["category"] == "fun") {
+
+            tickets += `${prefix}${command["name"]} - ${command["description"]}\n\n`;
         }
     }
 
    
     response += moderatie;
     response += tickets;
+    response += fun;
 
 var helpEmbed = new discord.MessageEmbed()
     .setTitle('Help')
