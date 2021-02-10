@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
 
     var giveawayEmbed = new discord.MessageEmbed()
         .setTitle("🎉 **Giveaway** 🎉")
-        .setFooter(`Eindigt: ${dataEnd}`)
+        .setFooter(`Eindigt: ${dateEnd}`)
         .setDescription(item)
 
 
