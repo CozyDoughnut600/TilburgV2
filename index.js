@@ -55,7 +55,7 @@ bot.on("message", async message => {
     if (message.channel.type === "dm") return message.reply("Sorry, ik kan niet antwoorden in dms. Ga naar de discord.");
 
 
-    var swearWords = JSON.parse(fs.readFileSync("./data/swearWords.json"));
+    var swearWords = JSON.parse(fs.readFileSync("./data/swearwords.json"));
     var msg = message.content.toLowerCase();
     var modlog = message.member.guild.channels.cache.get("806523114967662653");
 
