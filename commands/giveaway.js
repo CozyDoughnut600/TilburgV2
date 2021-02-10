@@ -83,7 +83,7 @@ module.exports.run = async (bot, message, args) => {
         }
 
 
-    }, time*1000)
+    }, time * 1000)
 
 
 }
