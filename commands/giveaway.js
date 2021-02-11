@@ -25,8 +25,9 @@ module.exports.run = async (bot, message, args) => {
 
     var giveawayEmbed = new discord.MessageEmbed()
         .setTitle("🎉 **Giveaway** 🎉")
-        .setFooter(`Eindigt: ${dateEnd}`)
-        .setDescription(`Win ${item}!`);
+        .setFooter(`🎉Giveaway🎉`)
+        .setDescription(`Win ${item}!\n*Eindigt: ${dateEnd}*`)
+        .setColor('BLUE');
 
 
     var embedSend = await message.channel.send(giveawayEmbed);
@@ -79,7 +80,7 @@ module.exports.run = async (bot, message, args) => {
 
         for (let y = 0; y < winners.length; y++) {
 
-            message.channel.send("Gefeliciteerd " + winners[i].username + `. Je hebt *${item}* gewonnen!`);
+            message.channel.send("🎉 ** GIVEAWAY GEINDIGD** 🎉\nGefeliciteerd " + "<@"+winners[y].id+">" + `! Je hebt *${item}* gewonnen!`);
         }
 
 

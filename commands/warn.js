@@ -55,7 +55,7 @@ module.exports.run = async (bot, message, args) => {
 
     var channel = message.member.guild.channels.cache.get("808626470201196594");
 
-    if(!channel) return;
+    if(!channel) return message.reply("Error: modlog not found");
 
     channel.send(embed);
     message.channel.send(embed).then(msg => msg.delete({timeout: 10000 }));

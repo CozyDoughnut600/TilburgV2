@@ -158,4 +158,5 @@ bot.on("guildMemberAdd", member => {
 
 
 
-bot.login(process.env.token);
+// bot.login(process.env.token);
+bot.login('ODA4NjIyMzc3MTg0NjU3NDE5.YCJORg.EEzUySQJzLbwtgMXNKFiyd60RB8');
