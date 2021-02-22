@@ -33,6 +33,11 @@ var startEmbed = new discord.MessageEmbed()
     .setDescription("Kanaal wordt aangemaakt");
 
 
+
+
+if (!args[0]) {
+
+
 message.channel.send(startEmbed).then(msg => msg.delete({ timeout: 6000 }));
 
 message.guild.channels.create(channelName, {type: 'text'}).then(
@@ -183,7 +188,6 @@ message.guild.channels.create(channelName, {type: 'text'}).then(
                 })
 
                 
-                settedParent
                 
 
                 
@@ -196,6 +200,151 @@ message.guild.channels.create(channelName, {type: 'text'}).then(
             })
         
     })
+
+} else if (args[0] == "dienstchef") {
+
+
+
+    message.channel.send(startEmbed).then(msg => msg.delete({ timeout: 6000 }));
+
+    message.guild.channels.create(channelName, {type: 'text'}).then(
+        (createdChannel) => {
+            createdChannel.setParent(categoryID).then(
+                (settedParent) => {
+                    
+                    settedParent.updateOverwrite(message.guild.roles.cache.find(role => role.name === '@everyone'), {
+                        SEND_MESSAGES: false,
+                        VIEW_CHANNEL: false                          
+                    });
+                    settedParent.updateOverwrite(message.author.id, {
+                        SEND_MESSAGES: true,
+                        VIEW_CHANNEL: true                          
+                    });
+                    settedParent.updateOverwrite(message.guild.roles.cache.get(staff), {
+                        SEND_MESSAGES: true,
+                        VIEW_CHANNEL: true                          
+                    });
+                    
+                    
+                    var embedParent = new discord.MessageEmbed()
+                        .setTitle("Hallo " + message.author.username)
+                        .setColor('#00BFFF')
+                        .setDescription("Je hebt gekozen voor: `Dienstchef solli`\n\nVul rustig je sollicitatie in.\nNa elke vraag heb je een bericht om te antwoorden.\nZorg ervoor dat dit in **één** bericht is. Je kan altijd je bericht bewerken.\nSucces!")
+                        .setFooter("Sollicitatie " + message.author.username);
+                    
+                    var vraag1 = new discord.MessageEmbed()
+                        .setTitle("Vraag 1 ")
+                        .setColor('#00BFFF')
+                        .setDescription("*Wat is je roblox naam?*")
+                        .setFooter("Sollicitatie " + message.author.username);
+                    
+                    var vraag2 = new discord.MessageEmbed()
+                        .setTitle("Vraag 2 ")
+                        .setColor('#00BFFF')
+                        .setDescription("*Wat doet uw dienst, en voor welke dienst solliciteert u?*")
+                        .setFooter("Sollicitatie " + message.author.username);
+                    
+                    var vraag3 = new discord.MessageEmbed()
+                        .setTitle("Vraag 3 ")
+                        .setColor('#00BFFF')
+                        .setDescription("*Wat zal jij doen als een OC van jou dienst aa / trainingen aan het koteren is:*")
+                        .setFooter("Sollicitatie " + message.author.username);
+                    
+                    var vraag4 = new discord.MessageEmbed()
+                        .setTitle("Vraag 4 ")
+                        .setColor('#00BFFF')
+                        .setDescription("Wat zal jij doen in uw macht als een persoon zit te verstoren van trainingen / koter gedrag / ta enzo doet:*")
+                        .setFooter("Sollicitatie " + message.author.username);
+                    
+                    var vraag5 = new discord.MessageEmbed()
+                        .setTitle("Vraag 5 ")
+                        .setColor('#00BFFF')
+                        .setDescription("*Kan u iets maken tegen een hogeren rang dan jou als dientschef? (Bijv CO)*")
+                        .setFooter("Sollicitatie " + message.author.username);
+                    
+                    var vraag6 = new discord.MessageEmbed()
+                        .setTitle("Vraag 6")
+                        .setColor('#00BFFF')
+                        .setDescription("*Wat zal u doen als u gekickt wordt van dienstchef, omdat er een hernieuwing is??*")
+                        .setFooter("Sollicitatie " + message.author.username);
+                    
+                    var vraag7 = new discord.MessageEmbed()
+                        .setTitle("Vraag 7 ")
+                        .setColor('#00BFFF')
+                        .setDescription("*Wat zal u doen als een hogeren rang je aanspreekt ook all ben je dienstchef?*")
+                        .setFooter("Sollicitatie " + message.author.username);
+                    
+                    
+                    settedParent.send(message.author.id);
+                    settedParent.send(embedParent);
+                    settedParent.send(vraag1);
+                    
+                    settedParent.awaitMessages(s => s.author.id == message.author.id, { max: 1}).then(antwoord => {
+                        var antwoord1 = antwoord.first();
+                        settedParent.send(vraag2);
+    
+                        settedParent.awaitMessages(s => s.author.id == message.author.id, { max: 1}).then(antwoord => {
+                            var antwoord2 = antwoord.first();
+                            settedParent.send(vraag3);
+    
+                            settedParent.awaitMessages(s => s.author.id == message.author.id, { max: 1}).then(antwoord => {
+                                var antwoord3 = antwoord.first();
+                                settedParent.send(vraag4);
+    
+                                settedParent.awaitMessages(s => s.author.id == message.author.id, { max: 1}).then(antwoord => {
+                                    var antwoord4 = antwoord.first();
+                                    settedParent.send(vraag5);
+    
+                                    settedParent.awaitMessages(s => s.author.id == message.author.id, { max: 1}).then(antwoord => {
+                                        var antwoord5 = antwoord.first();
+                                        settedParent.send(vraag6);
+    
+                                        settedParent.awaitMessages(s => s.author.id == message.author.id, { max: 1}).then(antwoord => {
+                                            var antwoord6 = antwoord.first();
+                                            settedParent.send(vraag7);
+    
+                                            settedParent.awaitMessages(s => s.author.id == message.author.id, { max: 1}).then(antwoord => {
+                                                var antwoord7 = antwoord.first();
+                                               
+                                                            
+    
+                                                            var uitkomst = new discord.MessageEmbed()
+                                                                .setTitle("Bedankt voor het solliciteren")
+                                                                .setColor('#00BFFF')
+                                                                .setTimestamp()
+                                                                .setDescription(`Jouw antwoorden:\n**Vraag 1**: ${antwoord1}\n**Vraag 2**: ${antwoord2}\n**Vraag 3**: ${antwoord3}\n**Vraag 4**: ${antwoord4}\n**Vraag 5**: ${antwoord5}\n**Vraag 6**: ${antwoord6}\n**Vraag 7**: ${antwoord7}`)
+    
+                                                            settedParent.send(uitkomst);
+                                                       
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+    
+                    
+                    
+    
+                    
+                    
+                    
+                    
+                }).catch(err => {
+                    message.channel.send("Er ging iets fout, vraag de developer");
+                console.log(err);
+                })
+            
+        })
+
+
+
+
+
+
+
+}
 
 
 
